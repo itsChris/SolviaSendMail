@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SolviaSendMail.MainPage">
+
+    <ScrollView>
+
+        <StackLayout Padding="10">
+            <Label Text="Sender:"/>
+            <Frame x:Name="frameSender" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtSender" Text="sender@domain.tld"/>
+            </Frame>
+
+            <Label Text="Recipient:"/>
+            <Frame x:Name="frameRecipient" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtRecipient" Text="recipient@domain.tld"/>
+            </Frame>
+
+            <Label Text="SMTP Server:"/>
+            <Frame x:Name="frameSmtpServer" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtSmtpServer" Text="mailserver.domain.tld"/>
+            </Frame>
+
+            <Label Text="Port:"/>
+            <Frame x:Name="framePort" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtPort" Keyboard="Numeric" Text="25"/>
+            </Frame>
+
+            <Label Text="SMTP server requires authentication"/>
+            <Switch x:Name="authSwitch"/>
+
+            <Label Text="Username:"/>
+            <Frame x:Name="frameUsername" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtUsername" IsEnabled="{Binding Source={x:Reference authSwitch}, Path=IsToggled}"/>
+            </Frame>
+
+            <Label Text="Password:"/>
+            <Frame x:Name="framePassword" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtPassword" IsPassword="True" IsEnabled="{Binding Source={x:Reference authSwitch}, Path=IsToggled}"/>
+            </Frame>
+
+            <Label Text="Subject:"/>
+            <Frame x:Name="frameSubject" BorderColor="Transparent" HasShadow="False">
+                <Entry x:Name="txtSubject" Text="Mail Subject"/>
+            </Frame>
+
+            <Frame x:Name="frameBody" BorderColor="Transparent" HasShadow="False">
+                <Editor x:Name="txtBodyHtml" HeightRequest="600"/>
+            </Frame>
+
+            <Label Text="Body is HTML"/>
+            <Switch x:Name="htmlSwitch" IsToggled="True"/>
+
+            <Button x:Name="btnUpdatePreview" Text="Update Preview"/>
+
+            <Label Text="Body (HTML):"/>
+
+            <Label Text="Preview:"/>
+            <WebView x:Name="htmlPreview" HeightRequest="600" />
+
+            <Button x:Name="btnSend" Text="Send Email" Clicked="btnSend_Click"/>
+
+            <Label x:Name="lblOutput" Text="Output will be displayed here."/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
